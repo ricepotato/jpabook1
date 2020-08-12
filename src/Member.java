@@ -17,9 +17,11 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
+    @Column(name="created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
+    @Column(name="last_modified_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
