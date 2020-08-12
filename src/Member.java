@@ -2,14 +2,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER")
+@Table(name="MEMBER", uniqueConstraints = {@UniqueConstraint(name="NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})})
 public class Member {
 
     @Id
     @Column(name = "id")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 값 생성을 데이터베이스에 위임. 쓰기 지연 사용 불가.
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable=false, length=10)
     private String username;
     private Integer age;
 
@@ -32,9 +33,11 @@ public class Member {
         return id;
     }
 
+    /* 기본키는 변경하지 않는다. 저장된 엔티티의 기본 키 값을 변경하면 오류가 발생한다. */
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String getUsername() {
         return username;
