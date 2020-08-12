@@ -22,6 +22,7 @@ public class Main {
             tx.commit();
         }catch (Exception e ){
             tx.rollback();
+            System.out.println(e.toString());
         }finally {
             em.close();
         }
